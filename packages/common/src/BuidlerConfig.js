@@ -14,14 +14,13 @@ const {
 const { getDefaultEtherscanConfig } = require("@nomiclabs/buidler-etherscan/dist/config");
 const { getLongVersion } = require("@nomiclabs/buidler-etherscan/dist/solc/SolcVersions");
 
-usePlugin("@nomiclabs/buidler-truffle5");
-usePlugin("solidity-coverage");
-usePlugin("@nomiclabs/buidler-etherscan");
-
 // Solc version defined here so etherscan-verification has access to it
 const solcVersion = "0.6.12";
 
 function getBuidlerConfig(configOverrides) {
+  usePlugin("@nomiclabs/buidler-truffle5");
+  usePlugin("solidity-coverage");
+  usePlugin("@nomiclabs/buidler-etherscan");
   task("test")
     .addFlag("debug", "Compile without optimizer")
     .setAction(async (taskArgs, bre, runSuper) => {
