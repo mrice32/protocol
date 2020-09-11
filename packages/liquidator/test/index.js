@@ -137,8 +137,8 @@ contract("index.js", function(accounts) {
       priceFeedConfig: defaultPriceFeedConfig
     });
 
-    // // First log should include # of decimals
-    // assert.isTrue(spyLogIncludes(spy, 0, "8"));
+    // First log should include # of decimals
+    assert.isTrue(spyLogIncludes(spy, 0, "8"));
   });
 
   it("EMP is expired, liquidator exits early without throwing", async function() {

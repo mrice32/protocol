@@ -134,10 +134,9 @@ function addSign(number) {
 // toDecimals: number - decimal value to convert to
 // web3: web3 object to get a big number function.
 // return => (amount:string)=>BN
-const ConvertDecimals = (fromDecimals, toDecimals, web3) => {
+const ConvertDecimals = (fromDecimals, toDecimals) => {
   assert(fromDecimals >= 0, "requires fromDecimals as an integer >= 0");
   assert(toDecimals >= 0, "requires toDecimals as an integer >= 0");
-  assert(web3, "requires web3 instance");
   // amount: string, BN, number - integer amount in fromDecimals smallest unit that want to convert toDecimals
   // returns: BN with toDecimals in smallest unit
   return amount => {
