@@ -108,9 +108,12 @@ contract("Liquidator.js", function(accounts) {
       });
 
       beforeEach(async function() {
+        const tokenFactory = await TokenFactory.deployed();
+        const timer = await Timer.deployed();
+
         // Create a mockOracle and finder. Register the mockMoracle with the finder.
         finder = await Finder.deployed();
-        mockOracle = await MockOracle.new(finder.address, Timer.address, {
+        mockOracle = await MockOracle.new(finder.address, timer.address, {
           from: contractCreator
         });
         const mockOracleInterfaceName = utf8ToHex(interfaceName.Oracle);
@@ -120,8 +123,8 @@ contract("Liquidator.js", function(accounts) {
           expirationTimestamp: "20345678900",
           withdrawalLiveness: "1000",
           collateralAddress: collateralToken.address,
-          finderAddress: Finder.address,
-          tokenFactoryAddress: TokenFactory.address,
+          finderAddress: finder.address,
+          tokenFactoryAddress: tokenFactory.address,
           priceFeedIdentifier: utf8ToHex(identifier),
           syntheticName: `Test ${collateralToken} Token`,
           syntheticSymbol: identifier,
@@ -131,7 +134,7 @@ contract("Liquidator.js", function(accounts) {
           sponsorDisputeRewardPct: { rawValue: toWei("0.1") },
           disputerDisputeRewardPct: { rawValue: toWei("0.1") },
           minSponsorTokens: { rawValue: toWei("5") },
-          timerAddress: Timer.address
+          timerAddress: timer.address
         };
 
         // Deploy a new expiring multi party

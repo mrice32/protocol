@@ -3,6 +3,8 @@
 
 const { ConvertDecimals, parseFixed, LiquidationStatesEnum } = require("@umaprotocol/common");
 const Promise = require("bluebird");
+// const { parseFixed } = require("@ethersproject/bignumber");
+// const {ConvertDecimals,parseFixed} = require("@ethersproject/bignumber");
 
 class ExpiringMultiPartyClient {
   /**
@@ -43,7 +45,7 @@ class ExpiringMultiPartyClient {
     // currently not implemented
     this.convertSynthetic = Convert(syntheticDecimals);
     this.convertCollateral = Convert(collateralDecimals);
-    this.convertCollateralToSynthetic = ConvertDecimals(collateralDecimals, syntheticDecimals, this.web3);
+    this.convertCollateralToSynthetic = ConvertDecimals(collateralDecimals, syntheticDecimals);
   }
 
   // Returns an array of { sponsor, numTokens, amountCollateral } for each open position.
